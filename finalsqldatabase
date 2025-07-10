@@ -1,0 +1,129 @@
+-- Floor table
+create table floor(
+id serial primary key,
+level int,
+name varchar(100)
+);
+
+INSERT INTO floor (level, name)
+VALUES
+(1, 'Main Lobby'),
+(2, 'Assisted Living - North Wing'),
+(3, 'Assisted Living - South Wing'),
+(4, 'Memory Care Unit'),
+(5, 'Physical Therapy & Wellness'),
+(6, 'Dining Hall & Cafe'),
+(7, 'Recreation & Activity Center'),
+(8, 'Medical Services & Pharmacy'),
+(9, 'Staff Offices'),
+(10, 'Rooftop Garden & Lounge');
+
+-- Room table
+create table room(
+id serial primary key,
+capacity int,
+number int,
+floor_num int,
+foreign key (floor_num) references floor(id)
+);
+
+INSERT INTO room (capacity, number, floor_num) 
+VALUES
+(1, 101, 1),
+(2, 102, 1),
+(1, 103, 1),
+(2, 201, 2),
+(1, 202, 2),
+(2, 203, 2),
+(1, 301, 3),
+(2, 302, 3),
+(2, 401, 4),
+(1, 402, 4),
+(2, 501, 5),
+(1, 502, 5),
+(2, 601, 6),
+(2, 701, 7),
+(1, 702, 7),
+(2, 801, 8),
+(1, 802, 8),
+(2, 901, 9),
+(1, 902, 9),
+(2, 1001, 10);
+
+-- Triggers to check room number starts with floor number
+DELIMITER //
+
+create trigger room_num_starts_with_floor_num before insert on room
+for each row 
+begin
+	if left(NEW.number, length(cast(new.floor_num as char))) != cast(new.floor_num as char) then 
+    signal sqlstate '45000'
+    SET MESSAGE_TEXT = 'Room number must start with the floor number';
+    END IF;
+END;
+//
+DELIMITER ; 
+
+DELIMITER //
+
+create trigger check_update_room_num before update on room
+for each row 
+begin
+	if left(NEW.number, length(cast(new.floor_num as char))) != cast(new.floor_num as char) then 
+    signal sqlstate '45000'
+    SET MESSAGE_TEXT = 'Updated Room number must start with the floor number';
+    END IF;
+END;
+//
+DELIMITER ; 
+
+-- Resident table
+create table resident(
+id serial primary key, 
+firstname varchar(50), 
+lastname varchar(50), 
+age int, 
+room int, 
+foreign key (room) references room(id)
+);
+
+INSERT INTO resident (firstname, lastname, age) 
+VALUES
+('Mary', 'Johnson', 82),
+('James', 'Smith', 75),
+('Patricia', 'Brown', 79),
+('Robert', 'Davis', 85),
+('Linda', 'Miller', 90),
+('Michael', 'Wilson', 77),
+('Barbara', 'Moore', 83),
+('William', 'Taylor', 88),
+('Elizabeth', 'Anderson', 91),
+('David', 'Thomas', 80),
+('Jennifer', 'Jackson', 84),
+('Charles', 'White', 78),
+('Susan', 'Harris', 76),
+('Joseph', 'Martin', 89),
+('Margaret', 'Thompson', 81),
+('Thomas', 'Garcia', 85),
+('Sarah', 'Martinez', 74),
+('Christopher', 'Robinson', 79);
+
+-- Assign residents to rooms
+UPDATE resident SET room = 1 WHERE id = 1;
+UPDATE resident SET room = 2 WHERE id = 2;
+UPDATE resident SET room = 3 WHERE id = 3;
+UPDATE resident SET room = 4 WHERE id = 4;
+UPDATE resident SET room = 5 WHERE id = 5;
+UPDATE resident SET room = 6 WHERE id = 6;
+UPDATE resident SET room = 7 WHERE id = 7;
+UPDATE resident SET room = 8 WHERE id = 8;
+UPDATE resident SET room = 9 WHERE id = 9;
+UPDATE resident SET room = 10 WHERE id = 10;
+UPDATE resident SET room = 11 WHERE id = 11;
+UPDATE resident SET room = 12 WHERE id = 12;
+UPDATE resident SET room = 13 WHERE id = 13;
+UPDATE resident SET room = 14 WHERE id = 14;
+UPDATE resident SET room = 15 WHERE id = 15;
+UPDATE resident SET room = 16 WHERE id = 16;
+UPDATE resident SET room = 17 WHERE id = 17;
+UPDATE resident SET room = 18 WHERE id = 18;
