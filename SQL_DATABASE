@@ -1,0 +1,132 @@
+# SQL Code To Create Tables in DB
+
+#Table Creation & Value Insertion: Floor
+
+create table floor(
+id serial primary key,
+level int,
+name varchar(100)
+);
+
+INSERT INTO floor (level, name)
+VALUES(1, 'Main Lobby'),
+(2, 'Assisted Living - North Wing'),
+(3, 'Assisted Living - South Wing'),
+(4, 'Memory Care Unit'),
+(5, 'Physical Therapy & Wellness'),
+(6, 'Dining Hall & Cafe'),
+(7, 'Recreation & Activity Center'),
+(8, 'Medical Services & Pharmacy'),
+(9, 'Staff Offices'),
+(10, 'Rooftop Garden & Lounge');
+
+# Table Creation & Value Insertion: Room
+create table room(
+id serial primary key,
+capacity varchar(15),
+number int,
+floor_num bigint unsigned,
+foreign key (floor_num) references floor(id)
+);
+
+INSERT INTO room (capacity, number, floor_num) 
+VALUES
+('Single', 101, 1),
+('Double', 102, 1),
+('Single', 103, 1),
+('Double', 201, 2),
+('Single', 202, 2),
+('Double', 203, 2),
+('Single', 301, 3),
+('Double', 302, 3),
+('Double', 401, 4),
+('Single', 402, 4),
+('Double', 501, 5),
+('Single', 502, 5),
+('Double', 601, 6),
+('Double', 701, 7),
+('Single', 702, 7),
+('Double', 801, 8),
+('Single', 802, 8),
+('Double', 901, 9),
+('Single', 902, 9),
+('Double', 1001, 10);
+
+# Triggers to ensure number starts with corresponding floor num
+#New Record Trigger
+DELIMITER //
+
+create trigger room_num_starts_with_floor_num before insert on room
+for each row 
+begin
+	if left(NEW.number, length(new.floor_num)) != cast(new.floor_num AS char) then 
+    signal sqlstate '45000'
+    SET MESSAGE_TEXT = 'Room number must start with the floor number';
+    END IF;
+END;
+//
+DELIMITER ; 
+#Update Record Trigger
+DELIMITER //
+
+create trigger check_update_room_num before update on room
+for each row 
+begin
+	if left(NEW.number, length(new.floor_num)) != cast(new.floor_num AS char) then 
+    signal sqlstate '45000'
+    SET MESSAGE_TEXT = 'Updated Room number must start with the floor number';
+    END IF;
+END;
+//
+DELIMITER ; 
+
+#Table Creation & Value Insertion: Resident
+
+create table resident(
+id serial primary key, 
+firstname varchar(50), 
+lastname varchar(50), 
+age int, 
+room bigint unsigned, 
+foreign key (room) references room(id)
+);
+
+INSERT INTO resident (firstname, lastname, age) 
+VALUES
+('Mary', 'Johnson', 82),
+('James', 'Smith', 75),
+('Patricia', 'Brown', 79),
+('Robert', 'Davis', 85),
+('Linda', 'Miller', 90),
+('Michael', 'Wilson', 77),
+('Barbara', 'Moore', 83),
+('William', 'Taylor', 88),
+('Elizabeth', 'Anderson', 91),
+('David', 'Thomas', 80),
+('Jennifer', 'Jackson', 84),
+('Charles', 'White', 78),
+('Susan', 'Harris', 76),
+('Joseph', 'Martin', 89),
+('Margaret', 'Thompson', 81),
+('Thomas', 'Garcia', 85),
+('Sarah', 'Martinez', 74),
+('Christopher', 'Robinson', 79);
+
+UPDATE resident SET room = 1 WHERE id = 19;
+UPDATE resident SET room = 2 WHERE id = 20;
+UPDATE resident SET room = 3 WHERE id = 21;
+UPDATE resident SET room = 4 WHERE id = 22;
+UPDATE resident SET room = 5 WHERE id = 23;
+UPDATE resident SET room = 6 WHERE id = 24;
+UPDATE resident SET room = 7 WHERE id = 25;
+UPDATE resident SET room = 8 WHERE id = 26;
+UPDATE resident SET room = 9 WHERE id = 27;
+UPDATE resident SET room = 10 WHERE id = 28;
+UPDATE resident SET room = 11 WHERE id = 29;
+UPDATE resident SET room = 12 WHERE id = 30;
+UPDATE resident SET room = 13 WHERE id = 31;
+UPDATE resident SET room = 14 WHERE id = 32;
+UPDATE resident SET room = 15 WHERE id = 33;
+UPDATE resident SET room = 16 WHERE id = 34;
+UPDATE resident SET room = 17 WHERE id = 35;
+UPDATE resident SET room = 18 WHERE id = 36;
