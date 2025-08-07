@@ -1,0 +1,24 @@
+<!--This creates the page for CRUD operations on the residents table-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Residents</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!--Ensures that necessary fields must be filled out in order for a new entry to be processed-->
+<body>
+    <h2>Manage Residents</h2>
+    <form id="resident-form">
+        <input type="hidden" id="resident-id">
+        <input type="text" id="resident-firstname" placeholder="First Name" required>
+        <input type="text" id="resident-lastname" placeholder="Last Name" required>
+        <input type="number" id="resident-age" placeholder="Age" required>
+        <input type="number" id="resident-room" placeholder="Room ID" required>
+        <button type="submit" id="resident-submit-btn">Add Resident</button>
+        <button type="button" id="resident-cancel-btn" style="display:none;">Cancel</button>
+    </form>
+    <div id="residents-list"></div>
+    <script src="residents.js"></script>
+</body>
+</html>
