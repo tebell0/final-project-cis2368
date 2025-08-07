@@ -1,0 +1,21 @@
+<!--This file is responsible for the frontend display of the floors page.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Floors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Manage Floors</h2>
+    <form id="floor-form">
+        <input type="hidden" id="floor-id">
+        <input type="number" id="floor-level" placeholder="Level" required>
+        <input type="text" id="floor-name" placeholder="Name" required>
+        <button type="submit" id="floor-submit-btn">Add Floor</button>
+        <button type="button" id="floor-cancel-btn" style="display:none;">Cancel</button>
+    </form>
+    <div id="floors-list"></div>
+    <script src="floors.js"></script>
+</body>
+</html>
