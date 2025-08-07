@@ -1,0 +1,39 @@
+<!--This file is for the landing page/login page of the system-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!--Contains the login form in a card and ensures users must enter a username and password to gain access to CRUD operations. Any input will be accepted-->
+<body>
+    <div class="login-container" id="login-container">
+        <h1>Welcome to the Senior Citizen Room Occupancy System!</h1>
+        <p>Please login below.</p>
+        <h2>Login</h2>
+        <form id="login-form" action="#" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+<!--This is for the second part of the page, after the user has logged in.-->
+<!--Presents a menu with three buttons leading to CRUD operations for each table.-->
+    <div id="dashboard" style="display:none;">
+        <h2>What would you like to review?</h2>
+        <a href="floors.html"><button id="floors-btn">Floors</button></a>
+        <a href="residents.html"><button id="residents-btn">Residents</button></a>
+        <a href="rooms.html"><button id="rooms-btn">Rooms</button></a>
+
+
+    <script src="app.js"> </script>
+</body>
+</html>
