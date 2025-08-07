@@ -1,0 +1,99 @@
+/* This file contains all CSS styling for the applications frontend.
+    It is referenced by all other files in the frontend directory. */
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+h1, h2, p {
+    text-align: center;
+}
+
+.login-container {
+    background: #1a1a1a;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+    width: 350px;
+    margin: 60px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #fff;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: none;
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+button[type="submit"] {
+    display: block;
+    margin: 1.2rem auto 0 auto;
+    padding: 0.7rem 2.5rem;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+#dashboard {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#dashboard button {
+    margin: 0 10px 20px 10px;
+    padding: 0.6rem 2rem;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#dashboard button:hover {
+    background: #444;
+}
+
+#dashboard-output {
+    margin-top: 20px;
+    text-align: left;
+    background: #181818;
+    padding: 1.2rem;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    overflow-x: auto;
+}
