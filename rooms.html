@@ -1,0 +1,22 @@
+<!--This file creates the CRUD operations page for the Rooms table-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Rooms</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Manage Rooms</h2>
+    <form id="room-form">
+        <input type="hidden" id="room-id">
+        <input type="number" id="room-number" placeholder="Room Number" required>
+        <input type="text" id="room-capacity" placeholder="Capacity" required>
+        <input type="number" id="room-floor" placeholder="Floor ID" required>
+        <button type="submit" id="room-submit-btn">Add Room</button>
+        <button type="button" id="room-cancel-btn" style="display:none;">Cancel</button>
+    </form>
+    <div id="rooms-list"></div>
+    <script src="rooms.js"></script>
+</body>
+</html>
